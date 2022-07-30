@@ -73,6 +73,7 @@ export default createWidget("tag-header-widget", {
             h("div.tag-title-contents", [
               h("h1", [h("span", tag), additionalTagNames]),
               h("p", tagDescription),
+              h("a", "example.com")
             ])
           );
         }
