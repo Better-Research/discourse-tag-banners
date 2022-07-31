@@ -73,7 +73,7 @@ export default createWidget("tag-header-widget", {
             h("div.tag-title-contents", [
               h("h1", [h("span", tag), additionalTagNames]),
               h("p", tagDescription),
-              h("a", {"href": "https://eprint.iacr.org/" + tag.replace("-", "/")})
+              h("a", {"href": "https://eprint.iacr.org/" + tag.replace("-", "/"), "value": "https://eprint.iacr.org/" + tag.replace("-", "/") })
             ])
           );
         }
