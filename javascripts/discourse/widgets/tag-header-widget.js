@@ -21,7 +21,7 @@ export default createWidget("tag-header-widget", {
   },
 
   html() {
-    console.log(this.topic.tags)
+    //console.log(this.topic.tags)
     this.store.find("tag-info", tag).then((result) => {
       console.log(result)
     });
