@@ -26,7 +26,7 @@ export default createWidget("tag-header-widget", {
     const route = router.currentRoute;
     const hideMobile =
       !settings.show_on_mobile && this.site.mobileView ? true : false;
-      console.log(route.params)
+      console.log(this.topic)
     if (route && route.params && route.params.hasOwnProperty("tag_id")) {
       let tag = route.params.tag_id;
       let formattedTagName = tag;
