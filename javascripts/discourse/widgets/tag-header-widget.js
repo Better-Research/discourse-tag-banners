@@ -21,6 +21,7 @@ export default createWidget("tag-header-widget", {
   },
 
   html() {
+    console.log(this.topic.topic_tags)
     const router = getOwner(this).lookup("router:main");
     const route = router.currentRoute;
     const hideMobile =
