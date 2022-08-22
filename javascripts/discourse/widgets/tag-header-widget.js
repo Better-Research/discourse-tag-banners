@@ -17,6 +17,7 @@ export default createWidget("tag-header-widget", {
       this.state.loaded = true;
       this.scheduleRerender();
     });
+    console.log(this.topic.tag)
   },
 
   html() {
