@@ -21,12 +21,12 @@ export default createWidget("tag-header-widget", {
   },
 
   html() {
-    console.log(this.topic.topic_tags)
+    
     const router = getOwner(this).lookup("router:main");
     const route = router.currentRoute;
     const hideMobile =
       !settings.show_on_mobile && this.site.mobileView ? true : false;
-
+      console.log(route.params)
     if (route && route.params && route.params.hasOwnProperty("tag_id")) {
       let tag = route.params.tag_id;
       let formattedTagName = tag;
