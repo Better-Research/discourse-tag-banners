@@ -17,10 +17,11 @@ export default createWidget("tag-header-widget", {
       this.state.loaded = true;
       this.scheduleRerender();
     });
-    console.log(this.topic.tag)
+    
   },
 
   html() {
+    console.log(this.topic.tag)
     const router = getOwner(this).lookup("router:main");
     const route = router.currentRoute;
     const hideMobile =
