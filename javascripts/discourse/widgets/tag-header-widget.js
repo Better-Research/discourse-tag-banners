@@ -84,8 +84,8 @@ export default createWidget("tag-header-widget", {
                 h("span", formattedTagName),
                 formattedAdditionalTagNames,
               ]),
-              h("p", tagDescription),
-              h("a", {href: "https://eprint.iacr.org/" + tag.replace("-", "/")}, "https://eprint.iacr.org/" + tag.replace("-", "/"))
+              h("p", tagDescription), h("strong", "PDF: "),
+              h("a", {href: "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf"}, "https://eprint.iacr.org/" + tag.replace("-", "/"))
             ])
           );
         }
