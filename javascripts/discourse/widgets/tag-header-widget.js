@@ -27,7 +27,8 @@ export default createWidget("tag-header-widget", {
               var data_json = JSON.parse(data["result"]);
               if (data_json != null) {
                 var authors = JSON.parse(data_json["authors"]).join(", ") 
-                this.state.info = h("span", [h('p', authors), h('p', data_json["abstract"])])
+                //this.state.info = h("span", [h('p', authors), h('button.abstract_collapsible', "Show Abstract"),h('div.abstract_content', data_json["abstract"])])
+                this.state.info = h("span", [h('p', authors), h('details.abstract-content', [h("summary", "Abstract"), h("p", data_json["abstract"])])])
                 this.scheduleRerender();
               }
               else {
