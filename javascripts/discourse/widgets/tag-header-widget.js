@@ -1,6 +1,8 @@
 import { createWidget } from "discourse/widgets/widget";
 import { getOwner } from "discourse-common/lib/get-owner";
 import { h } from "virtual-dom";
+import { ajax } from 'discourse/lib/ajax';
+
 
 export default createWidget("tag-header-widget", {
   tagName: "span",
@@ -8,7 +10,7 @@ export default createWidget("tag-header-widget", {
   buildKey: () => `tag-header-widget`,
 
   defaultState() {
-    return { loaded: false, tag: null };
+    return { loaded: false, tag: null, info: null };
   },
 
   getTagInfo(tag) {
@@ -16,7 +18,33 @@ export default createWidget("tag-header-widget", {
       this.state.tag = result;
       this.state.loaded = true;
       this.scheduleRerender();
+    }).then(() => {
+      if (this.state.loaded) {
+        ajax("/paper_store/" + tag + ".json").then(response =>  {
+          console.log(response)
+          return response
+        }).then(data => {
+            if(!data.hasOwnProperty("error")) {
+              var data_json = JSON.parse(data["result"]);
+              if (data_json != null) {
+                var authors = JSON.parse(data_json["authors"]).join(", ") 
+                this.state.info = h("span", [h('p', authors), h('p', data_json["abstract"])])
+                this.scheduleRerender();
+              }
+              else {
+                this.state.info = null;
+                this.scheduleRerender();
+              }
+            }
+            else {
+              this.state.info = null;
+              this.scheduleRerender();
+            }
+            
+          });
+      }
     });
+    
   },
 
   html() {
@@ -84,7 +112,9 @@ export default createWidget("tag-header-widget", {
                 h("span", formattedTagName),
                 formattedAdditionalTagNames,
               ]),
-              h("p", tagDescription), h("strong", "PDF: "),
+              h("p", tagDescription), 
+              this.state.info,
+              h("strong", "PDF: "),
               h("a", {href: "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf"}, "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf")
             ])
           );
