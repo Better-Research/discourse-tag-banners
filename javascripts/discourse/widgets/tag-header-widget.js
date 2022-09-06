@@ -21,7 +21,6 @@ export default createWidget("tag-header-widget", {
     }).then(() => {
       if (this.state.loaded) {
         ajax("/paper_store/" + tag + ".json").then(response =>  {
-          console.log(response)
           return response
         }).then(data => {
             if(!data.hasOwnProperty("error")) {
