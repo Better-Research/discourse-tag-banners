@@ -29,7 +29,7 @@ export default createWidget("tag-header-widget", {
                 var authors = JSON.parse(data_json["authors"]).join(", ") 
                 //this.state.info = h("span", [h('p', authors), h('button.abstract_collapsible', "Show Abstract"),h('div.abstract_content', data_json["abstract"])])
                 
-                this.state.info = h("span", [h('p', authors), h('details.abstract-content', [h("summary", "Abstract"), h("p", {id:"abstract-par"}, data_json["abstract"])])]);
+                this.state.info = h("span", [h('p', authors), h('details.abstract-content', [h("summary", "Abstract"), h("p", {id:"abstract-par-" + tag}, data_json["abstract"])])]);
                 this.scheduleRerender();
               }
               else {
@@ -109,11 +109,11 @@ export default createWidget("tag-header-widget", {
           return h(
             `div.tag-title-header .tag-banner-${tag} .${additionalClass}`,
             h("div.tag-title-contents", [
-              h("h1", {id:"tag-title-par"},[
+              h("h1",[
                 h("span", formattedTagName),
                 formattedAdditionalTagNames,
               ]),
-              h("p", {id:"title-par"}, tagDescription), 
+              h("p", {id:"title-par-" + tag}, tagDescription), 
               this.state.info,
               h("strong", "PDF: "),
               h("a", {href: "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf"}, "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf")
