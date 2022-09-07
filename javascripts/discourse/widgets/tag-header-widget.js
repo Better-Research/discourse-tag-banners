@@ -109,7 +109,7 @@ export default createWidget("tag-header-widget", {
           return h(
             `div.tag-title-header .tag-banner-${tag} .${additionalClass}`,
             h("div.tag-title-contents", [
-              h("h1", [
+              h("h1", {id:"tag-title-par"},[
                 h("span", formattedTagName),
                 formattedAdditionalTagNames,
               ]),
