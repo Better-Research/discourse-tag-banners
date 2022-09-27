@@ -106,19 +106,37 @@ export default createWidget("tag-header-widget", {
             tagDescription = this.state.tag.description;
           }
 
-          return h(
-            `div.tag-title-header .tag-banner-${tag} .${additionalClass}`,
-            h("div.tag-title-contents", [
-              h("h1",[
-                h("span", formattedTagName),
-                formattedAdditionalTagNames,
-              ]),
-              h("p", {id:"title-par-" + tag}, tagDescription), 
-              this.state.info,
-              h("strong", "PDF: "),
-              h("a", {href: "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf"}, "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf")
-            ])
-          );
+          if(tag === "isogeny-club") {
+            return h(
+              `div.tag-title-header .tag-banner-${tag} .${additionalClass}`,
+              h("div.tag-title-contents", [
+                h("h1",[
+                  h("span", "The Isogeny Club"),
+                  formattedAdditionalTagNames,
+                ]),
+                h("p", {id:"title-par-" + tag}, "Topics related to papers that appeared on The Isogeny Club seminars"), 
+                this.state.info,
+                h("strong", "More info: "),
+                h("a", {href: "https://the-isogeny-club.github.io"}, "https://the-isogeny-club.github.io")
+              ])
+            );
+          }
+          else {
+            return h(
+              `div.tag-title-header .tag-banner-${tag} .${additionalClass}`,
+              h("div.tag-title-contents", [
+                h("h1",[
+                  h("span", formattedTagName),
+                  formattedAdditionalTagNames,
+                ]),
+                h("p", {id:"title-par-" + tag}, tagDescription), 
+                this.state.info,
+                h("strong", "PDF: "),
+                h("a", {href: "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf"}, "https://eprint.iacr.org/" + tag.replace("-", "/") + ".pdf")
+              ])
+            );
+          }
+          
         }
       } else {
         document.querySelector("body").classList.remove("tag-banner");
